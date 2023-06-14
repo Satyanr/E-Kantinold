@@ -24,6 +24,7 @@ class User extends Authenticatable
         'name',
         'email',
         'nomorhp',
+        'ruangan',
         'job',
         'password',
         'image',
@@ -57,5 +58,9 @@ class User extends Authenticatable
 
     public function kantintr(){
         return $this->hasMany(Transaksi::class, 'kantin_id', 'id');
+    }
+
+    public function ruangan(){
+        return $this->hasOne(Ruangan::class, 'id', 'ruangan_id');
     }
 }

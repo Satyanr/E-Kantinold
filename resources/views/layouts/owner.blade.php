@@ -41,8 +41,7 @@
                             @foreach ($riwayats as $transaksi)
                                 <div class="accordion-item">
                                     <h2 class="accordion-header">
-                                        <button id="bgbuttonnotif"
-                                            class="accordion-button collapsed text-center"
+                                        <button id="bgbuttonnotif-{{$transaksi->id}}" class="accordion-button collapsed text-center"
                                             type="button" data-bs-toggle="collapse"
                                             data-bs-target="#flush-collapse{{ $transaksi->id }}" aria-expanded="false"
                                             aria-controls="flush-collapse{{ $transaksi->id }}">
@@ -61,19 +60,27 @@
                                             <div class="container text-center">
                                                 <div class="row row-cols-2">
                                                     <div class="col">
-                                                        <form action="{{route('transaksi.status.update', $transaksi->id)}}" method="post">
+                                                        <form
+                                                            action="{{ route('transaksi.status.update', $transaksi->id) }}"
+                                                            method="post">
                                                             @csrf
                                                             @method('PATCH')
-                                                            <input type="hidden" name="status" value="Pesanan di Terima">
-                                                            <button id="checknotif1" class="btn btn-primary">Terima</button>
+                                                            <input type="hidden" name="status"
+                                                                value="Pesanan di Terima">
+                                                            <button id="checknotif1"
+                                                                class="btn btn-primary">Terima</button>
                                                         </form>
                                                     </div>
                                                     <div class="col">
-                                                        <form action="{{route('transaksi.status.update', $transaksi->id)}}" method="post">
+                                                        <form
+                                                            action="{{ route('transaksi.status.update', $transaksi->id) }}"
+                                                            method="post">
                                                             @csrf
                                                             @method('PATCH')
-                                                            <input type="hidden" name="status" value="Pesanan di Tolak">
-                                                            <button id="checknotif2" class="btn btn-danger">Tolak</button>
+                                                            <input type="hidden" name="status"
+                                                                value="Pesanan di Tolak">
+                                                            <button id="checknotif2"
+                                                                class="btn btn-danger">Tolak</button>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -99,32 +106,27 @@
         crossorigin="anonymous"></script>
     <script src="/ownerasset/js/datatables-simple-demo.js"></script>
 
-    <script>
-        var notif = document.getElementById('notifcheck1');
-        var unread = {{ $transaksi->whereOpened(0)->count() }};
-        
 
-        if (unread < 1) {
-            notif.classList.add('visually-hidden');
-        }
-
-       
-    </script>
 
     <script>
-        var bg = document.getElementById('bgbuttonnotif');
-        var inf = "{{$transaksi->status}}";
+        @foreach ($riwayats as $transaksi)
+        var inf = '{{$transaksi->status}}';
 
-        if (inf == "Pesanan di Terima") {
-            bg.classList.add('text-white');
-            bg.classList.add('bg-success');
-        } else if (inf == "Pesanan di Tolak") {
-            bg.classList.add('text-white');
-            bg.classList.add('bg-danger');
-        }else{
-            bg.classList.add('bg-opacity-50');
-            bg.classList.add('bg-secondary');
+        // Get the button element with the corresponding transaction ID
+        var button = document.getElementById('bgbuttonnotif-{{$transaksi->id}}');
+
+        // Check the value of the status and add appropriate classes for the background color
+        if (inf == 'Pesanan di Terima') {
+            button.classList.add('text-white');
+            button.classList.add('bg-success');
+        } else if (inf == 'Pesanan di Tolak') {
+            button.classList.add('text-white');
+            button.classList.add('bg-danger');
+        } else {
+            button.classList.add('bg-opacity-50');
+            button.classList.add('bg-secondary');
         }
+    @endforeach
     </script>
 
     @stack('script')

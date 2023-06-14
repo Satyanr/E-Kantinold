@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('nomorhp')->unique();
             $table->string('job');
+            $table->string('ruangan_id')->default('Belum di atur');
             $table->timestamp('email_verified_at')->nullable();
             $table->String('image')->nullable();
             $table->String('body')->nullable();

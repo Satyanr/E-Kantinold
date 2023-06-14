@@ -16,6 +16,7 @@ return new class extends Migration
             $table->String('name');
             $table->String('jumlah');
             $table->String('total_harga');
+            $table->text('itemtambahan')->nullabel();
             $table->text('body')->nullabel();
             $table->boolean('opened')->default(false)->change();
             $table->String('status')->default('pending');

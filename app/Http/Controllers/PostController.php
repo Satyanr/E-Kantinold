@@ -24,18 +24,36 @@ class PostController extends Controller
     public function index()
     {   $posts = Post::where('author_id', auth()->user()->id)->get(); 
         $categories = Category::all();
-        $riwayats = Transaksi::where('author_id', auth()->user()->id)->get();
+        $riwayats = Transaksi::where('kantin_id', auth()->user()->id)->get();
 
         return view('owner.food', compact('posts','categories','riwayats'));
     }
 
-    public function status(Request $request){
+    public function status(Request $request, $id){
         $post = new Post();
-        $post-> status = $request->has('status');
+        $post-> status = $request->has('status{{$id}}');
         $post->save();
 
         return redirect()->back();
     }
+
+    public function edit($id){
+        $posts = Post::whereId($id)->first();
+        $riwayats = Transaksi::where('kantin_id', auth()->user()->id)->get();
+        $categories = Category::all();
+ 
+        return view ('owner.editfood', compact('posts', 'categories','riwayats'));
+     }
+ 
+     public function update (Request $request, $id){
+         $posts = Post::find($id);
+         $posts->update([
+             'name'=>$request->name,
+             'slug'=> Str::slug($request->name),
+         ]);
+ 
+         return redirect()->back();
+     }
 
     public function store(Request $request){
         
@@ -58,5 +76,12 @@ class PostController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'Post created successfully!');
+    }
+
+    public function destroy ($id){
+        $post = Post::find($id);
+        $post ->delete();        
+
+        return redirect()->back();
     }
 }

@@ -11,6 +11,10 @@
                 <div class="sb-nav-link-icon"><i class="fas fa-table me-1"></i></div>
                 Category
             </a>
+            <a class="nav-link" href="{{url('admin/ruangan')}}">
+                <div class="sb-nav-link-icon"><i class="fas fa-table me-1"></i></div>
+                Ruangan
+            </a>
         </div>
     </div>
     <div class="sb-sidenav-footer">

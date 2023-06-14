@@ -1,0 +1,28 @@
+.card{
+	overflow: hidden;
+}
+
+.menu{
+	width: 415px; 
+	height: 250px; 
+	object-fit: cover;
+}
+
+.kantin{
+	width: 225px;
+	height: 225px; 
+	margin: 0 auto; 
+	margin-top: 25px; 
+	object-fit: cover;
+}
+
+.form-control {
+    width: 335px;
+    margin: 0 auto;
+  }
+
+  .pp {
+	width: 65px;
+	height: 65px; 
+	object-fit: cover;
+  }

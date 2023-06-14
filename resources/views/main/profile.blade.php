@@ -5,6 +5,11 @@
         <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
             <div class="row">
                 <div class="col">
+                    <a href="{{ url()->previous() }}" class="link-body-emphasis display-4 mt-3"><i class="fas fa-arrow-left"></i></a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
                     <img src="{{ url('public/Picture/' . Auth::user()->image) }}" width="200" height="200"
                         class="rounded-circle">
                 </div>

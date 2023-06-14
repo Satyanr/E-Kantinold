@@ -22,9 +22,6 @@
                                     Daftar Makanan
                                 </div>
                                 <div class="p-2">
-                                    <button type="submit" class="btn btn-primary">Update Ketersediaan</button>
-                                </div>
-                                <div class="p-2">
                                     <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal">
@@ -65,24 +62,39 @@
                                             <td>{{ $post->title }}</td>
                                             <td>{{ $post->price }}</td>
                                             <td>{{ $post->body }}</td>
-                                            <td><input type="checkbox" name="status" class="switch-input" value="1"
-                                                    {{ old('status') ? 'checked="checked"' : '' }} /></td>
+                                            <td>
+                                                <form action="{{route('post.food.status', $post->id)}}" method="post">
+                                                    @csrf
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio"
+                                                            name="status{{ $post->id }}" value="1"
+                                                            id="status_{{ $post->id }}_1"
+                                                            {{ $post->status == '1' ? 'checked' : '' }}>
+                                                        <label class="form-check-label" for="status_{{ $post->id }}_1">
+                                                            Tersedia
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio"
+                                                            name="status{{ $post->id }}" value="0"
+                                                            id="status_{{ $post->id }}_0"
+                                                            {{ $post->status == '0' ? 'checked' : '' }}>
+                                                        <label class="form-check-label" for="status_{{ $post->id }}_0">
+                                                            Tidak Tersedia
+                                                        </label>
+                                                    </div>
+                                                </form>
+                                            </td>
                                             <td>
                                                 <div class="dropend">
                                                     <i class="fa fa-ellipsis-v" type="button" data-bs-toggle="dropdown"
                                                         aria-expanded="false"></i>
                                                     <div class="dropdown-menu">
-                                                        {{-- <a class="dropdown-item"
-                                                        href="{{ route('category.edit', $post->id) }}"><i
-                                                            class="fas fa-edit pr-1"></i>Edit</a>
-                                                    <a class="dropdown-item text-danger"
-                                                        href="{{ route('category.delete', $post->id) }}"
-                                                        onclick="return confirm('Apakah anda yakin ? Data akan dihapus!!!')"><i
-                                                            class="fas fa-trash pr-1">
-                                                        </i>Delete</a> --}}
-                                                        <a class="dropdown-item" href="#"><i
+                                                        <a class="dropdown-item" href="{{route('food.tambahitem', $post->id)}}"><i
+                                                            class="fas fa-edit pr-1"></i>Tambahan Item</a>
+                                                        <a class="dropdown-item" href="{{route('post.food.edit', $post->id)}}"><i
                                                                 class="fas fa-edit pr-1"></i>Edit</a>
-                                                        <a class="dropdown-item text-danger" href="#"
+                                                        <a class="dropdown-item text-danger" href="{{route('post.delete', $post->id)}})}}"
                                                             onclick="return confirm('Apakah anda yakin ? Data akan dihapus!!!')"><i
                                                                 class="fas fa-trash pr-1">
                                                             </i>Delete</a>
