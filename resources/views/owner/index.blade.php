@@ -19,6 +19,7 @@
                         <thead>
                             <tr>
                                 <th>Nama</th>
+                                <th>Item Tambahan</th>
                                 <th>Jumlah</th>
                                 <th>Total Harga</th>
                                 <th>Status</th>
@@ -28,6 +29,7 @@
                         <tfoot>
                             <tr>
                                 <th>Nama</th>
+                                <th>Item Tambahan</th>
                                 <th>Jumlah</th>
                                 <th>Total Harga</th>
                                 <th>Status</th>
@@ -38,6 +40,7 @@
                             @foreach($riwayats as $transaksi)
                             <tr>
                                 <td>{{$transaksi->name}}</td>
+                                <td>{{$transaksi->itemtambahan}}</td>
                                 <td>{{$transaksi->jumlah}}</td>
                                 <td>{{$transaksi->total_harga}}</td>
                                 <td>{{$transaksi->status}}</td>

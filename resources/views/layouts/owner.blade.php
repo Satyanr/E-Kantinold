@@ -55,6 +55,7 @@
                                         data-bs-parent="#accordionFlushRiwayat">
                                         <div class="accordion-body">
                                             <p class="lead">Total Harga: {{ $transaksi->total_harga }}</p>
+                                            <p class="lead">Tambahan Item: {{ $transaksi->itemtambahan }}</p>
                                             <p class="lead">Catatan Pesanan: {{ $transaksi->body }}</p>
                                             <p class="lead">Status: {{ $transaksi->status }}</p>
                                             <div class="container text-center">

@@ -10,7 +10,7 @@
                         <div class="text-center"> <img class="menu img-fluid"
                                 src="{{ url('public/Image/' . $foods->image) }}" /></div>
                         <h2 class="mt-2">{{ $foods->title }}</h2>
-                        <h4>Rp.{{ $foods->price }},00</h4>
+                        <h4>Rp. {{ $foods->price }},00</h4>
                     </div>
                     <input name="kantin_id" readonly style="display: none" value="{{ $foods->author_id }}">
                     <input name="name" readonly style="display: none" value="{{ $foods->title }}">
@@ -37,8 +37,8 @@
                                         <label class="form-check-label">
                                             <input class="form-check-input" type="checkbox" value="{{ $item->harga }}"
                                                 id="checkout{{ $item->id }}">
-                                            {{ $item->name }} Harga:
-                                            {{ $item->harga }}</label>
+                                            <b>{{ $item->name }}</b> Harga:
+                                            <span class="opacity-75"> Rp. {{ $item->harga }},00<span> </label>
                                         <input type="hidden" name="item_names[]" value="{{ $item->name }}"
                                             id="item{{ $item->id }}">
                                     </div>
